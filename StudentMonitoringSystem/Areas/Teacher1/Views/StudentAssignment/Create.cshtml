@@ -1,0 +1,188 @@
+﻿@model StudentMonitoringSystem.Models.Assignment
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Assignment</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.TeacherID, "TeacherID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TeacherID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TeacherID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ClassID, "ClassID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ClassID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ClassID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SectionID, "SectionID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SectionID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SectionID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubjectID, "SubjectID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SubjectID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SubjectID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubmitDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SubmitDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SubmitDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+      
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<a href="~/docFile/Problems.docx">Download File</a>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script>
+                      $(document).ready(function () {
+                          var TeacherID;
+                            $('#TeacherID').change(function () {
+                            TeacherID = $(this).val();
+                                $.getJSON("/StudentAssignment/GetClasses?ID=" + TeacherID,
+                                    function (data) {
+                                        var selectOptions = "";
+                                        $.each(data, function (key, val) {
+                                            // alert(val.ClassID);
+                                            //selectOptions.filter((res) => {
+                                            //    return res;
+                                            //});
+                                            selectOptions += "<option value='" + val.ID + "'>" + val.Name + "</option>";
+
+                                        });
+
+                                        $('#ClassID').empty().html(selectOptions);
+                                    });
+                            });
+
+
+                          var ClassID;
+
+                            $('#ClassID').click(function () {
+
+
+                                 ClassID = $(this).val();
+                              //  var TeacherID = $("TeacherID").val();
+                           //     alert(TeacherID);
+                                //$.getJSON("/StudentAssignment/GetSection?ID='" + ClassID + "'& tID='" + TeacherID + "'",
+                                $.getJSON('/StudentAssignment/GetSection', {
+                                        ID: ClassID,
+                                        tID: TeacherID,
+                                        
+                                    },
+                                  function (data) {
+                                      var selectOptions = "";
+                                      $.each(data, function (key, val) {
+                                          // alert(val.ClassID);
+                                          //selectOptions.filter((res) => {
+                                          //    return res;
+                                          //});
+                                          selectOptions += "<option value='" + val.ID + "'>" + val.Name + "</option>";
+
+                                      });
+
+                                      $('#SectionID').empty().html(selectOptions);
+                                  });
+                            });
+
+
+
+                          $('#SectionID').click(function () {
+
+                          
+                              SectionID = $(this).val();
+                              
+                              $.getJSON('/StudentAssignment/GetSubject', {
+                                  ID: SectionID,
+                                  tID: TeacherID,
+                                  cID: ClassID,
+
+                              },
+                                
+                                  function (data) {
+                                     
+                                      var selectOptions = "";
+                                      $.each(data, function (key, val) {
+                                          // alert(val.ClassID);
+                                          //selectOptions.filter((res) => {
+                                          //    return res;
+                                          //});
+                                          selectOptions += "<option value='" + val.ID + "'>" + val.SubjectName + "</option>";
+
+                                      });
+
+                                      $('#SubjectID').empty().html(selectOptions);
+                                  });
+                          });
+                        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+}

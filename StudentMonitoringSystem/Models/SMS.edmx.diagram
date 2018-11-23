@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="10d08fa8f95947d391a5e6b769fb9243" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Campu" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.City" Width="1.5" PointX="3.125" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Principle" Width="1.5" PointX="7.125" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Campus_City" ManuallyRouted="false" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Principle_Campus" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Student" Width="1.5" PointX="9.5" PointY="5" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Student_Campus" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Parent" Width="1.5" PointX="9.25" PointY="0.875" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Student_Parent" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Teacher" Width="1.5" PointX="0.5" PointY="6.75" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Teacher_Campus" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.ClassAndSectionDetail" Width="1.875" PointX="7.5" PointY="11.625" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Class1_Campus1" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Student_Class11" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Section" Width="1.5" PointX="11.75" PointY="20.25" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_ClassAndSectionDetails_Section" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_ClassAndSectionDetails_Teacher" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Event" Width="1.5" PointX="5.25" PointY="17.875" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.NoticsBoard" Width="1.5" PointX="5.25" PointY="15.125" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Events_Campus" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_NoticsBoard_Campus" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Driver" Width="1.5" PointX="5.25" PointY="21.625" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.DriverVehicle" Width="1.5" PointX="7.5" PointY="21.5" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Driver_Campus" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_DriverVehicle_Driver" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Parentss" Width="1.5" PointX="12.5" PointY="3.875" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Role" Width="1.5" PointX="7.25" PointY="0.75" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Studentss" Width="1.5" PointX="14.75" PointY="11.5" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Studentss_ClassAndSectionDetails" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Studentss_Parentss" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.User" Width="1.5" PointX="12.5" PointY="6.75" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_User_Campus" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Parentss_User" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_User_Role" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Studentss_User" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.AddClass" Width="1.5" PointX="17.125" PointY="6" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_AddClass_Campus" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_AddClass_Section" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Class" Width="1.5" PointX="10.25" PointY="13.375" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_AddClass_Class" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_ClassAndSectionDetails_Class" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Student_Class1" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Studentss_ClassAndSectionDetails1" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_ClassAndSectionDetails_Class1" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.SubjectTimeTable" Width="1.5" PointX="19.875" PointY="4.75" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable_Campus" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable_Section" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.AmAndPm" Width="1.5" PointX="18" PointY="3.25" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Day" Width="1.5" PointX="18" PointY="0.75" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Hour" Width="1.5" PointX="18" PointY="14.125" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Minute" Width="1.5" PointX="0.75" PointY="1.125" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable_AmAndPm" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable_AmAndPm1" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable_Days" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable_Hour" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable_Hour1" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable_Minutes" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable_Minutes1" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable_Class" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Student_Section" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.ExamsTimeTable" Width="1.5" PointX="22.25" PointY="6.625" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_ExamsTimeTable_Campus" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_ExamsTimeTable_Class" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_ExamsTimeTable_Hour" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_ExamsTimeTable_Hour1" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_ExamsTimeTable_Minutes" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_ExamsTimeTable_Minutes1" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.ExamsType" Width="1.5" PointX="5.375" PointY="3.875" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_ExamsTimeTable_ExamsType" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.InvoiceInformation" Width="1.5" PointX="12.625" PointY="16.125" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.PaymentInformation" Width="1.5" PointX="14.875" PointY="16.375" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_InvoiceInformation_Class" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_InvoiceInformation_Student" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_PaymentInformation_InvoiceInformation" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Attendance" Width="1.5" PointX="16.875" PointY="18.875" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Attendance_Class" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Attendance_Section" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.SubjectTeacher" Width="1.5" PointX="23.625" PointY="1.5" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTeacher_Campus" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTeacher_Section" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTeacher_Teacher" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTeacher_SubjectTeacher1" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.NoticeBoardUserType" Width="1.5" PointX="11.375" PointY="0.875" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_NoticsBoard_NoticsBoard" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Assignment" Width="1.5" PointX="20.625" PointY="12.5" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Assignment_Class" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Assignment_Section" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Assignment_Teacher" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.subject" Width="1.5" PointX="17.625" PointY="10.125" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Assignment_subject" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_subject_Campus" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_subject_Class" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_ExamsTimeTable_subject" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable_subject" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTeacher_subject" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.SubjectTimeTable1" Width="1.5" PointX="22.875" PointY="13.25" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable1_Campus" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable1_Class" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable1_Section" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_SubjectTimeTable1_SubjectTimeTable1" />
+        </Diagram>
+      <Diagram DiagramId="9cb2ec6a2da84be384adc8edaed242a2" Name="Attendace diagram" >
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Attendance" Width="1.5" PointX="0.5" PointY="0.75" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Section" Width="1.5" PointX="9.125" PointY="0.5" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Attendance_Section" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Student" Width="1.5" PointX="7.625" PointY="4.25" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Student_Section" />
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.Class" Width="1.5" PointX="3.875" PointY="0.625" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Student_Class1" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_Attendance_Class" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="StudentsMonitringSystemModel.StudentAttendance" Width="1.5" PointX="4" PointY="5.625" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_StudentAttendance_Attendance" />
+        <AssociationConnector Association="StudentsMonitringSystemModel.FK_StudentAttendance_Student" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

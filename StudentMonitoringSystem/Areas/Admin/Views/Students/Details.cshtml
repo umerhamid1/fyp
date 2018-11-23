@@ -1,0 +1,251 @@
+﻿@model StudentMonitoringSystem.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewBag.heading = "Students";
+
+    ViewBag.directory1 = "Delete";
+    ViewBag.directory2 = "Add";
+    ViewBag.directory3 = "Student";
+
+
+}
+
+
+<div class="row">
+    <div class="col">
+        <section class="card">
+            <header class="card-header">
+                <div class="card-actions">
+
+
+                </div>
+
+                <h2 class="card-title">Details</h2>
+            </header>
+            <div class="card-body">
+                <div>
+                  
+
+                    <br />
+                    <br />
+
+                    <div class="form-group row">
+                        @*@Html.LabelFor(model => model.StudentID, htmlAttributes: new { @class = "col-lg-3 control-label text-lg-right pt-2" })*@
+                        <dt class="col-lg-3 control-label text-lg-right pt-2">
+                            @Html.DisplayNameFor(model => model.StudentID)
+                        </dt>
+
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.StudentID, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        @*@Html.LabelFor(model => model.StudentID, htmlAttributes: new { @class = "col-lg-3 control-label text-lg-right pt-2" })*@
+                        <dt class="col-lg-3 control-label text-lg-right pt-2">
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </dt>
+
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+
+                        <dt class="col-lg-3 control-label text-lg-right pt-2">
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </dt>
+
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+
+                        <dt class="col-lg-3 control-label text-lg-right pt-2">
+                            @Html.DisplayNameFor(model => model.DOB)
+                        </dt>
+
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+
+                        <dt class="col-lg-3 control-label text-lg-right pt-2">
+                            @Html.DisplayNameFor(model => model.Gender)
+                        </dt>
+
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group row">
+
+                        <dt class="col-lg-3 control-label text-lg-right pt-2">
+                            @Html.DisplayNameFor(model => model.Address)
+                        </dt>
+
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+
+                        <dt class="col-lg-3 control-label text-lg-right pt-2">
+                            @Html.DisplayNameFor(model => model.Nationality)
+                        </dt>
+
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Nationality, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+
+                        <dt class="col-lg-3 control-label text-lg-right pt-2">
+                            @Html.DisplayNameFor(model => model.PhoneNo)
+                        </dt>
+
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+
+                        <dt class="col-lg-3 control-label text-lg-right pt-2">
+                            @Html.DisplayNameFor(model => model.SectionID)
+                        </dt>
+
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.SectionID, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+
+                        </div>
+                    </div>
+                    
+                    
+                <div class="form-group row">
+
+                    <dt class="col-lg-3 control-label text-lg-right pt-2">
+                        @Html.DisplayNameFor(model => model.Password)
+                    </dt>
+
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+
+                    </div>
+                </div>
+                
+                
+             
+
+                <div class="form-group row">
+
+                        <dt class="col-lg-3 control-label text-lg-right pt-2">
+                            @*@Html.DisplayNameFor(model => model.Class.Name)*@ Class
+                        </dt>
+
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Class.Name, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                        <dt class="col-lg-3 control-label text-lg-right pt-2">
+                            @*@Html.DisplayNameFor(model => model.Parent.FirstName)*@ Parent's Name
+                        </dt>
+
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Parent.FirstName, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="form-group row">
+
+                        <dt class="col-lg-3 control-label text-lg-right pt-2">
+                            @*@Html.DisplayNameFor(model => model.Parent.LastName)*@ Parent's Last Name
+                        </dt>
+
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Parent.LastName, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <br />
+                    <br />
+                    <br />
+
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+
+
+
+                        <footer class="card-footer text-right">
+                            
+                            <button type="reset"  class="btn btn-default">@Html.ActionLink("Back to list", "CampusStudent")</button>
+                        </footer>
+
+                    }
+                </div>
+
+
+                <div>
+
+                </div>
+
+
+
+
+            </div>
+        </section>
+    </div>
+</div>

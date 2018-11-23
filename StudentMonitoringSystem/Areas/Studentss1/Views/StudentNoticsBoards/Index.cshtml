@@ -1,0 +1,82 @@
+﻿@model IEnumerable<StudentMonitoringSystem.Models.NoticsBoard>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Student NoticsBoard</h2>
+
+
+
+@Html.DropDownList("CampusID", ViewBag.CampusID as SelectList, "Select Value")
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+
+
+
+    </tr>
+
+    <tbody id="tableBody">
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td></td>
+                <td></td>
+
+
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#CampusID').change(function () {
+                var CampusID = $(this).val();
+                $.getJSON("/StudentNoticsBoards/GetNoticeBoard?Code=" + CampusID, function (data) {
+                    var empdata = "";
+
+
+                    $.each(data, function (key, val) {
+
+
+
+
+                         empdata += "<tr>";
+
+                        empdata += "<td>" + val.Date + "</td>";
+
+                        empdata += "<td>" + val.Description + "</td>";
+
+
+
+
+
+
+                        empdata += "</tr>";
+                    });
+                    $('#tableBody').empty().html(empdata);
+                  //  $('#header').empty().html(header);
+
+                })
+
+            })
+        });
+    </script>
+
+}

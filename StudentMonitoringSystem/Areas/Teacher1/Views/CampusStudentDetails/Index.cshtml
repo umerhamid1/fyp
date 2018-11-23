@@ -1,0 +1,120 @@
+﻿@model IEnumerable<StudentMonitoringSystem.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+
+    ViewBag.heading = "Student Details";
+
+    ViewBag.directory1 = "Teacher";
+    ViewBag.directory2 = "Student";
+    ViewBag.directory3 = "Index";
+}
+
+
+
+
+@Html.DropDownList("CampusID", ViewBag.CampusID as SelectList,"Select Value")
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+      
+        @*<th>
+            @Html.DisplayNameFor(model => model.Parent.PhoneNo)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Class.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section.Name)
+        </th>*@
+        <th>Action</th>
+    </tr>
+    <tbody id="tableBody">
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+       
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Parent.PhoneNo)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.Class.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Section.Name)
+        </td>*@
+            <td>
+            
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) 
+           
+            </td>
+        </tr>
+    }
+    </tbody>
+
+
+</table>
+
+
+
+@section Scripts{
+    <script>
+      
+        $(document).ready(function () {
+            $('#CampusID').change(function () {
+               
+                var CampusID = $(this).val();
+                var url = "/CampusStudentDetails/GetCampusStudent?ID=" + CampusID;
+                $.getJSON(url, function (data) {
+                    var empdata = "";
+                   
+                    $.each(data, function (key, val) {
+                        empdata += "<tr>";
+                        empdata += "<td>" + val.StudentID + "</td>";
+                        empdata += "<td>" + val.FirstName + "</td>";
+                       
+                       
+                        empdata += "<td>" + val.LastName + "</td>";
+                        //empdata += "<td>" + val.Parent.PhoneNo + "</td>";
+                        //empdata += "<td>" + val.Class.Name + "</td>";
+                        //empdata += "<td>" + val.Section.Name + "</td>";
+                       
+                          empdata += "<td>";
+                        //empdata += "<a href='/Employee/Edit/" + val.employeeID + "'>Edit</a> | ";
+                        empdata += "<a href='Teacher1/CampusStudentDetails/Details/"+val.employeeID+"'>Details</a> | ";
+                        //empdata += "<a href='/Employee/Delete/"+val.employeeID+"'>Details</a>";
+                           empdata += "</td>";
+                        empdata += "</tr>";
+                    });
+                    $('#tableBody').empty().html(empdata);
+                    //  $('#header').empty().html(header);
+
+                })
+
+            })
+        });
+    </script>
+
+}

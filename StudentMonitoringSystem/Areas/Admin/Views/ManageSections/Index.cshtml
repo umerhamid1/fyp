@@ -1,0 +1,67 @@
+﻿@model IEnumerable<StudentMonitoringSystem.Models.ClassAndSectionDetail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+    ViewBag.heading = "Assign Class Teacher";
+
+    ViewBag.directory1 = "Index";
+    ViewBag.directory2 = "Class Teacher";
+    ViewBag.directory3 = "Class";
+}
+
+<div class="col">
+<button type="button" class="mb-1 mt-1 mr-1 btn btn-lg btn-primary" onclick="location.href='@Url.Action("Create", "ManageSections")';return false;"> Add new Class Teacher </button>
+<section class="card">
+<header class="card-header">
+    <div class="card-actions">
+
+    </div>
+
+    <h2 class="card-title">Class Teacher Details </h2>
+</header>
+<div class="card-body">
+<table class="table table-responsive-md table-hover mb-0">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Campu.Name)*@ Campus
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Class.Name)*@ Class
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Section.Name)*@ Section
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Teacher.Name)*@ Teacher
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Campu.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Class.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Section.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teacher.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+           
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+            </table>
+        </div>
+    </section>
+</div>

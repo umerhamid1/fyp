@@ -1,0 +1,203 @@
+﻿
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-reboot.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-reboot.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-grid.css" rel="stylesheet" />
+  
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+
+    <link href="~/Assets/CSS/responsive.css" rel="stylesheet" />
+
+    <link href="~/Assets/CSS/main.css" rel="stylesheet" />
+    <link href="~/Assets/CSS/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Assets/CSS/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/AssetsAdminPanel/vendor/font-awesome/css/font-awesome.css" />
+
+
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col">
+                        <div class="logo-container text-center">
+
+                            <a href='@Url.Action("Home", "Index")'>
+
+                                <img src="~/Assets/img/headerLogo/header_logo.png" />
+                                <h2>The Academmy School</h2>
+                            </a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-area">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-md-center" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+
+                                @Html.ActionLink("Home", "Home", new { Area = "Common", Controller = "Home" }, new { @class = "nav-link" })
+
+                            </li>
+                            <li class="nav-item">
+
+                                @Html.ActionLink("NoticsBoard", "NoticsBoard", new { Area = "Common", Controller = "NoticsBoard" }, new { @class = "nav-link" })
+
+                            </li>
+
+                            @*<li class="nav-item">
+
+                                    @Html.ActionLink("OurCampus", "OurCampus", new { Area = "Common", Controller = "OurCampus" }, new { @class = "nav-link" })
+
+                                </li>*@
+                            <li class="nav-item">
+
+
+                                @Html.ActionLink("Events", "Event", new { Area = "Common", Controller = "Event" }, new { @class = "nav-link" })
+                            </li>
+                            @*<li class="nav-item">
+
+                                    @Html.ActionLink("Teacher", "Teacher", new { Area = "Common", Controller = "Teacher" }, new { @class = "nav-link" })
+                                </li>*@
+                            @*<li class="nav-items">
+
+                                    @Html.ActionLink("Gallery", "Gallery", new { Area = "Common", Controller = "Gallery" }, new { @class = "nav-link" })
+
+                                </li>*@
+                            <li class="nav-item">
+
+
+                                @Html.ActionLink("Addmission", "Addmission", new { Area = "Common", Controller = "Addmission" }, new { @class = "nav-link" })
+
+                            </li>
+                            <li class="nav-item">
+
+                                @Html.ActionLink("About", "Index", new { Area = "Common", Controller = "About" }, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+
+                                @Html.ActionLink("Contact", "Contact", new { Area = "Common", Controller = "Contact" }, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+
+
+
+                                @Html.ActionLink("Login", "Login", new { Area = "Security", Controller = "Login" }, new { @class = "nav-link" })
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="">
+        @RenderBody()
+    </div>
+
+
+
+    <footer>
+        <div class="footer-widget-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="footer-widget info-widget text-right">
+                            <ul>
+                                <li class="address">
+                                    The Academy School, Gulshan Block-7 Campus, Karachi<i class="fa fa-map-marker"></i>
+                                </li>
+                                <li class="phone">
+                                    +92 324 3243282515<i class="fa fa-phone"></i>
+                                </li>
+                                <li class="fax">
+                                    7647839836<i class="fa fa-fax"></i>
+                                </li>
+                                <li class="email">
+                                    smomerhamid@gmail.com<i class="fa fa-envelope"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="footer-widget logo-widget text-center">
+                            <div class="footer-logo-container">
+                                <img src="uploads/frontend/header_logo.png" alt="">
+                            </div>
+                            <div class="footer-socials">
+                                <ul>
+                                    <li><a href="http://facebook.com/" target="_blank"><i class="fa fa-facebook-official"></i></a></li>
+                                    <li><a href="http://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="http://linkedin.com/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="http://google.com/" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="http://youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                                    <li><a href="http://instagram.com/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="footer-widget link-widget">
+                            <ul>
+                                <li>
+                                    <a href="PrivacyPolicy.aspx">
+                                        Privacy Policy
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="TermsCondition.aspx">
+                                        Terms & Conditions
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="Contact.aspx">
+                                        Contact Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="Login.aspx" target="_blank">
+                                        Admin
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+
+    @RenderSection("scripts", false)
+</body>
+</html>

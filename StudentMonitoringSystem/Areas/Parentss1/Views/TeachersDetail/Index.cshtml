@@ -1,0 +1,157 @@
+﻿@model IEnumerable<StudentMonitoringSystem.Models.Teacher>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+@Html.DropDownList("ParentID", ViewBag.ParentID as SelectList,"Select Parent")
+
+
+@Html.DropDownList("StudentID", ViewBag.StudentID as SelectList,"Select Value")
+
+
+
+<table  class="table">
+   <thead id="head">
+       <tr>
+
+           <th>  Class</th>
+
+           <th>Subject</th>
+           <th>
+               @Html.DisplayNameFor(model => model.Name)
+           </th>
+
+           <th>
+               @Html.DisplayNameFor(model => model.Gender)
+           </th>
+
+          
+           <th>
+               @Html.DisplayNameFor(model => model.Email)
+           </th>
+
+           <th></th>
+
+       </tr>
+
+</thead>
+     
+     
+
+    <tbody id="tableBody">
+        
+            <tr>
+                <td>
+                   @*here is class*@
+                </td>
+                <td>@*here is subject*@</td>
+                <td>
+                    @*here is teacher name*@
+                </td>
+             
+
+                <td>
+                    
+                </td>
+                <td>
+                  
+                </td>
+
+            </tr>
+       
+
+    </tbody>
+
+</table>
+
+@section Scripts{
+    <script>
+        $(function () {
+           // $("#head").hide() // try to hide google navigation bar
+        });
+
+        $(document).ready(function () {
+
+     
+
+        
+
+            $('#ParentID').change(function () {
+                var ParentID = $(this).val();
+           
+                $.getJSON("/TeachersDetail/GetStudents?ID=" + ParentID,
+                    
+                    function (data) {
+                        var selectOptions = "";
+                        $.each(data, function (key, val) {
+                           
+
+                            // alert(val.ClassID);
+                            //selectOptions.filter((res) => {
+                            //    return res;
+                            //});
+                            selectOptions += "<option value='" + val.ID + "'>" + val.name + "</option>";
+
+                        });
+
+                        $('#StudentID').empty().html(selectOptions);
+                    });
+            });
+
+            $('#StudentID').change(function () {
+              //  $("head").show();
+                var StudentID = $(this).val();
+                var url = "/TeachersDetail/GetTeachersDetails?ID=" + StudentID;
+                $.getJSON(url, function (data) {
+
+                 
+                    var empdata = "";
+                
+
+                    $.each(data, function (key, val) {
+                        empdata += "<tr>";
+
+
+                        empdata += "<td>" + val.Name + "</td>";
+
+                        empdata += "<td>" + val.SubjectName + "</td>";
+                        empdata += "<td>" + val.teacherName + "</td>";
+                        empdata += "<td>" + val.Gender + "</td>";
+
+
+                     
+
+                        empdata += "<td>" + val.Email + "</td>";
+
+                       
+
+                        //empdata += "<td>" + val.Parent.PhoneNo + "</td>";
+                        //empdata += "<td>" + val.Class.Name + "</td>";
+                        //empdata += "<td>" + val.Section.Name + "</td>";
+
+                        //  empdata += "<td>";
+                        //empdata += "<a href='/Employee/Edit/" + val.employeeID + "'>Edit</a> | ";
+                      //  empdata += "<a href='Teacher1/CampusStudentDetails/Details/"+val.employeeID+"'>Details</a> | ";
+                        //empdata += "<a href='/Employee/Delete/"+val.employeeID+"'>Details</a>";
+                        //   empdata += "</td>";
+                        empdata += "</tr>";
+                    });
+                    $('#tableBody').empty().html(empdata);
+                    //  $('#header').empty().html(header);
+
+                })
+
+            })
+
+
+
+
+
+        });
+
+    </script>
+
+}

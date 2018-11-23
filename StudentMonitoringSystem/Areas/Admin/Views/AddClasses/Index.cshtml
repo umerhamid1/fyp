@@ -1,0 +1,71 @@
+﻿@model IEnumerable<StudentMonitoringSystem.Models.AddClass>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+    ViewBag.heading = "Class";
+
+    ViewBag.directory1 = "Class";
+    ViewBag.directory2 = "Add Class";
+    ViewBag.directory3 = "Index";
+}
+
+
+<div class="col">
+    <button type="button" class="mb-1 mt-1 mr-1 btn btn-lg btn-primary" onclick="location.href = '@Url.Action("Create", "AddClasses")';return false;"> Add new Class </button>
+<section class="card">
+    <header class="card-header">
+        <div class="card-actions">
+
+        </div>
+
+        <h2 class="card-title">Classes Details </h2>
+    </header>
+
+    <div class="card-body">
+        
+        <input type="text" id="search" [(ngModel)]='search'/>
+        <table class="table table-responsive-md table-hover mb-0">
+
+            <tr>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Campu.Name)*@ Campus
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Class.Name)*@ Class
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Section.Name)*@ Section
+                </th>
+                <th>Actions</th>
+            </tr>
+           
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Campu.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Class.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Section.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new {id = item.ID}) |
+                        @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+                        @Html.ActionLink("Delete", "Delete", new {id = item.ID})
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+
+    </section>
+</div>
+

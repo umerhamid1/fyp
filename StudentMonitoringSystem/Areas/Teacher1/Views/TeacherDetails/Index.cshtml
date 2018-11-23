@@ -1,0 +1,133 @@
+﻿@model IEnumerable<StudentMonitoringSystem.Models.Teacher>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+
+
+    ViewBag.heading = "Teacher Details";
+
+    ViewBag.directory1 = "Teacher";
+    ViewBag.directory2 = "Details";
+    ViewBag.directory3 = "Index";
+}
+
+
+
+
+<div class="col">
+@*<button type="button" class="mb-1 mt-1 mr-1 btn btn-lg btn-primary" onclick="location.href = '@Url.Action("Create", "AddClasses")';return false;"> Add new Class </button>*@
+    @Html.DropDownList("Campus", ViewBag.CampusID as SelectList, htmlAttributes: new { @class = "form-control form-control-lg mb-" })
+    <section class="card">
+<header class="card-header">
+    <div class="card-actions">
+
+    </div>
+
+    <h2 class="card-title">Teacher Details </h2>
+</header>
+
+
+
+
+       
+    
+        <div class="card-body">
+    
+    
+        <table   class="table table-responsive-md table-hover mb-0">
+            
+            <tr id="header">
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.TeacherID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+
+               
+
+
+            </tr>
+            <tbody id="tableBody">
+            @foreach (var item in Model)
+            {
+                <tr >
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TeacherID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+
+                </tr>
+            }
+            </tbody>
+           
+
+        </table>
+    
+        </div>
+
+
+
+    </section>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#Campus').change(function () {
+                var CampusID = $(this).val();
+                $.getJSON("/TeacherDetails/GetTeacher?ID=" + CampusID, function (data) {
+                    var empdata = "";
+                  
+
+                    $.each(data, function (key, val) {
+                        // alert(val.cityID);
+                       
+
+
+                        empdata += "<tr>";
+                        empdata += "<td>" + val.TeacherID + "</td>";
+                        empdata += "<td>"+val.Name+"</td>";
+                       
+                       
+                        empdata += "<td>" + val.Email + "</td>";
+                        empdata += "<td>" + val.Phone + "</td>";
+                      //  empdata += "<td>";
+                        //empdata += "<a href='/Employee/Edit/" + val.employeeID + "'>Edit</a> | ";
+                        //empdata += "<a href='/Employee/Details/"+val.employeeID+"'>Details</a> | ";
+                        //empdata += "<a href='/Employee/Delete/"+val.employeeID+"'>Details</a>";
+                     //   empdata += "</td>";
+                        empdata += "</tr>";
+                    });
+                    $('#tableBody').empty().html(empdata);
+                  //  $('#header').empty().html(header);
+
+                })
+
+            })
+        });
+    </script>
+
+}

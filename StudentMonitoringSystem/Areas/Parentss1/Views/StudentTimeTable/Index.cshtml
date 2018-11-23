@@ -1,0 +1,137 @@
+﻿@model IEnumerable<StudentMonitoringSystem.Models.SubjectTimeTable1>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+@Html.DropDownList("ParentID", ViewBag.ParentID as SelectList, "Select Parent")
+
+
+@Html.DropDownList("StudentID", ViewBag.StudentID as SelectList, "Select Value")
+<table class="table">
+    <tr>
+    
+       
+        <th>Subject</th>
+        <th>Days</th>
+        <th>Time</th>
+        <th>Class</th>
+        <th>Section</th>
+        <th>Teacher</th>
+       
+    </tr>
+
+    <tbody id="tableBody">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    
+                </td>
+                <td>
+                   
+                </td>
+
+                <td>
+                    
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+          
+                </td>
+                <td>
+                   
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+
+</table>
+
+
+@section Scripts{
+    <script>
+        $(function () {
+           // $("#head").hide() // try to hide google navigation bar
+        });
+
+        $(document).ready(function () {
+
+
+
+
+
+            $('#ParentID').click(function () {
+                var ParentID = $(this).val();
+
+                $.getJSON("/StudentTimeTable/GetStudents?ID=" + ParentID,
+
+                    function (data) {
+                        var selectOptions = "";
+                        $.each(data, function (key, val) {
+                            selectOptions += "<option value='" + val.ID + "'>" + val.name + "</option>";
+
+                        });
+
+                        $('#StudentID').empty().html(selectOptions);
+                    });
+            });
+
+            $('#StudentID').click(function () {
+              //  $("head").show();
+                var StudentID = $(this).val();
+                var url = "/StudentTimeTable/GetTimeTable?ID=" + StudentID;
+                $.getJSON(url, function (data) {
+
+
+                    var empdata = "";
+
+
+                    $.each(data, function (key, val) {
+
+                       
+                        empdata += "<tr>";
+
+
+
+                        empdata += "<td>" + val.SubjectName + "</td>";
+
+                        empdata += "<td>" + val.Days + "</td>";
+                      
+
+
+
+                        empdata += "<td>" + val.timming + "</td>";
+                        empdata += "<td>" + val.ClassName + "</td>";
+                        empdata += "<td>" + val.SectionName + "</td>";
+                        empdata += "<td>" + val.TeacherName + "</td>";
+
+                        //  empdata += "<td>";
+                        //empdata += "<a href='/Employee/Edit/" + val.employeeID + "'>Edit</a> | ";
+                      //  empdata += "<a href='Teacher1/CampusStudentDetails/Details/"+val.employeeID+"'>Details</a> | ";
+                        //empdata += "<a href='/Employee/Delete/"+val.employeeID+"'>Details</a>";
+                        //   empdata += "</td>";
+                        empdata += "</tr>";
+                    });
+                    $('#tableBody').empty().html(empdata);
+                    //  $('#header').empty().html(header);
+
+                })
+
+            })
+
+
+
+
+
+        });
+
+    </script>
+
+}

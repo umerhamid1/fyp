@@ -1,0 +1,146 @@
+﻿@model StudentMonitoringSystem.Models.subject
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+    ViewBag.heading = "Subject";
+
+    ViewBag.directory1 = "Create";
+    ViewBag.directory2 = "Add";
+    ViewBag.directory3 = "sbuject";
+}
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+   
+    <div class="row">
+        <div class="col">
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-actions">
+                        <a href="#" class="card-action card-action-toggle" data-card-toggle> </a>
+                      
+                    </div>
+
+                    <h2 class="card-title">Add Subject</h2>
+                </header>
+                <div class="card-body">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group row">
+            @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "col-lg-3 control-label text-lg-right pt-2",@style= "font-weight: bold;" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.SubjectName, htmlAttributes: new { @class = "col-lg-3 control-label text-lg-right pt-2",@style= "font-weight: bold;" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.SubjectName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SubjectName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            @Html.LabelFor(model => model.CampusID, "CampusID", htmlAttributes: new { @class = "col-lg-3 control-label text-lg-right pt-2",@style= "font-weight: bold;" })
+            <div class="col-md-6">
+                @Html.DropDownList("CampusID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CampusID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    
+
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.ClassID, "ClassID", htmlAttributes: new { @class = "col-lg-3 control-label text-lg-right pt-2",@style= "font-weight: bold;" })
+            <div class="col-md-6">
+                @Html.DropDownList("ClassID", String.Empty@*null, htmlAttributes: new { @class = "form-control" }*@)
+                @Html.ValidationMessageFor(model => model.ClassID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    
+     
+        <footer class="card-footer text-right">
+            <input type="submit" href="/subjects/Index" value="ADD"  class="btn btn-primary"/>
+            <button type="reset" class="btn btn-default">@Html.ActionLink("Back", "Index")</button>
+        </footer>
+
+                     
+
+
+        <div>
+                           
+        </div>
+
+
+
+   
+    </div>
+    </section>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    
+    <script>
+
+
+
+        $(document).ready(function () {
+
+            $('#CampusID').change(function () {
+                var CampusID = $(this).val();
+                $.getJSON("/subjects/GetClasses?ID=" + CampusID,
+                    function (data) {
+                        var selectOptions = "";
+                        $.each(data, function (key, val) {
+                            // alert(val.ClassID);
+                            
+                            selectOptions += "<option value='" + val.ID + "'>" + val.Name + "</option>";
+
+                        });
+
+                        $('#ClassID').empty().html(selectOptions);
+                    });
+            });
+        });
+
+
+        $(document).ready(function () {
+
+            $('#CampusID').change(function () {
+                var CampusID = $(this).val();
+                $.getJSON("/subjects/GetTeacher?ID=" + CampusID,
+                    function (data) {
+                        var selectOptions = "";
+                        $.each(data, function (key, val) {
+                            // alert(val.ID);
+                            selectOptions += "<option value='" + val.ID + "'>" + val.Name + "</option>";
+
+                        });
+
+                        $('#TeacherID').empty().html(selectOptions);
+                    });
+            });
+
+
+
+
+        });
+
+
+    </script>
+
+}

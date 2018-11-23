@@ -1,0 +1,256 @@
+﻿@model IEnumerable<StudentMonitoringSystem.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+    ViewBag.heading = "Student Details";
+
+    ViewBag.directory1 = "Teacher";
+    ViewBag.directory2 = "Student";
+    ViewBag.directory3 = "Index";
+}
+
+
+
+@Html.DropDownList("CampusID", ViewBag.CampusID as SelectList, "Select Value")
+
+
+@Html.DropDownList("TeacherID", @*ViewBag.TeacherID as SelectList*@ "Select Value")
+
+
+
+@Html.DropDownList("ClassID", @*ViewBag.ClassID as SelectList*@ String.Empty)
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nationality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdmissionYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Campu.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parent.ParentsID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassAndSectionDetail.CampusID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Class.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DOB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nationality)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdmissionYear)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsApproved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Campu.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parent.ParentsID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClassAndSectionDetail.CampusID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Class.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Section.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+
+
+
+
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+
+
+@section Scripts{
+    <script>
+
+    
+
+        $(document).ready(function () {
+
+          
+
+            $('#CampusID').change(function () {
+                var CampusID = $(this).val();
+                $.getJSON("/StudentDetails/GetTeacher?ID=" + CampusID,
+                    function (data) {
+                        var selectOptions = "";
+                        $.each(data, function (key, val) {
+                            // alert(val.ID);
+                            selectOptions += "<option value='" + val.ID + "'>" + val.Name + "</option>";
+
+                        });
+
+                        $('#TeacherID').empty().html(selectOptions);
+                    });
+            });
+
+
+
+            $('#TeacherID').change(function () {
+                var TeacherID = $(this).val();
+
+                $.getJSON("/StudentDetails/GetClasses?ID=" + TeacherID,
+                    function (data) {
+                        var selectOptions = "";
+                        $.each(data, function (key, val) {
+                            // alert("ok");
+                            //selectOptions.filter((res) => {
+                            //    return res;
+                            //});
+                            selectOptions += "<option value='" + val.ID + "'>" + val.Name + "</option>";
+
+                        });
+
+                        $('#ClassID').empty().html(selectOptions);
+                    });
+            });
+
+
+
+
+            $('#TeacherID').change(function () {
+                var TeacherID = $(this).val();
+                $.getJSON("/StudentDetails/GetStudents?ID=" + TeacherID, function (data) {
+                    var empdata = "";
+                    
+
+                    $.each(data, function (key, val) {
+                        // alert(val.cityID);
+
+
+
+                        empdata += "<tr>";
+                        empdata += "<td>" + val.TeacherID + "</td>";
+                        empdata += "<td>" + val.Name + "</td>";
+
+
+                        empdata += "<td>" + val.Email + "</td>";
+                        empdata += "<td>" + val.Phone + "</td>";
+                        //  empdata += "<td>";
+                        //empdata += "<a href='/Employee/Edit/" + val.employeeID + "'>Edit</a> | ";
+                        //empdata += "<a href='/Employee/Details/"+val.employeeID+"'>Details</a> | ";
+                        //empdata += "<a href='/Employee/Delete/"+val.employeeID+"'>Details</a>";
+                        //   empdata += "</td>";
+                        empdata += "</tr>";
+                    });
+                    $('#tableBody').empty().html(empdata);
+                    //  $('#header').empty().html(header);
+
+                })
+
+            })
+
+        });
+
+
+        //$(document).ready(function () {
+
+        //    $('#TeacherID').change(function () {
+        //        var TeacherID = $(this).val();
+               
+        //        $.getJSON("/StudentDetails/GetClasses?ID=" + TeacherID,
+        //            function (data) {
+        //                var selectOptions = "";
+        //                $.each(data,function (key, val) {
+        //                   // alert("ok");
+        //                        //selectOptions.filter((res) => {
+        //                        //    return res;
+        //                        //});
+        //                        selectOptions += "<option value='" + val.ID + "'>" + val.Name + "</option>";
+
+        //                    });
+
+        //                $('#ClassID').empty().html(selectOptions);
+        //            });
+        //    });
+        //});
+
+
+
+       
+
+
+    </script>
+}

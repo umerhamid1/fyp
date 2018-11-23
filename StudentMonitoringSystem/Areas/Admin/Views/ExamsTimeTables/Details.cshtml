@@ -1,0 +1,91 @@
+﻿@model StudentMonitoringSystem.Models.ExamsTimeTable
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ExamsTimeTable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Campu.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Campu.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Class.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Class.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hour.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hour.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hour1.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hour1.ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Minute.Minuts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Minute.Minuts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Minute1.Minuts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Minute1.Minuts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subject.SubjectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subject.SubjectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExamsType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExamsType.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<StudentMonitoringSystem.Models.Teacher>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+
+
+    ViewBag.heading = "Teacher";
+
+    ViewBag.directory1 = "Teacher";
+    ViewBag.directory2 = "Index";
+    ViewBag.directory3 = "*";
+}
+
+
+
+<div class="col">
+<button type="button" class="mb-1 mt-1 mr-1 btn btn-lg btn-primary" onclick="location.href='@Url.Action("Create", "Teachers")';return false;"> Add new Teacher </button>
+<section class="card">
+<header class="card-header">
+    <div class="card-actions">
+
+    </div>
+
+    <h2 class="card-title">Teacher's Details </h2>
+</header>
+<div class="card-body">
+<table class="table table-responsive-md table-hover mb-0">
+
+
+    <thead>
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.TeacherID)*@ ID
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+      
+        <th>
+            @*@Html.DisplayNameFor(model => model.Phone)*@ Mobile
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+       
+        <th>
+            @*@Html.DisplayNameFor(model => model.Campu.Name)*@ Campus Name
+        </th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeacherID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Campu.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+
+    </tr>
+    
+}
+
+            </table>
+        </div>
+    </section>
+</div>

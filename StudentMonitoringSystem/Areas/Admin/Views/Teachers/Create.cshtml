@@ -1,0 +1,147 @@
+﻿@model StudentMonitoringSystem.Models.Teacher
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+
+    ViewBag.heading = "Teacher";
+
+    ViewBag.directory1 = "Create";
+    ViewBag.directory2 = "Add";
+    ViewBag.directory3 = "Teacher";
+}
+
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+    <div class="col">
+    <section class="card">
+    <header class="card-header">
+        <div class="card-actions">
+            <a href="#" class="card-action card-action-toggle" data-card-toggle> </a>
+                      
+        </div>
+
+        <h2 class="card-title">Add Teachers</h2>
+    </header>
+    <div class="card-body">
+
+    
+    
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new {@class = "col-lg-3 control-label text-lg-right pt-2",@style= "font-weight: bold;"})
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.DOB, htmlAttributes: new {@class = "col-lg-3 control-label text-lg-right pt-2",@style= "font-weight: bold;"})
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group row">
+            @Html.LabelFor(model => model.Gender, htmlAttributes: new {@class = "col-lg-3 control-label text-lg-right pt-2",@style= "font-weight: bold;"})
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Gender, htmlAttributes: new {@class = "col-lg-3 control-label text-lg-right pt-2",@style= "font-weight: bold;"})
+            <div class="col-lg-6">
+                @*Male
+                @Html.RadioButtonFor(model => model.Gender, "Male")
+                Female
+                @Html.RadioButtonFor(model => model.Gender, "female")*@
+                
+                
+                
+                Male  @Html.RadioButton("Gender","Male",true)  
+                Female @Html.RadioButton("Gender","Female")  
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new {@class = "col-lg-3 control-label text-lg-right pt-2",@style= "font-weight: bold;"})
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Phone, htmlAttributes: new {@class = "col-lg-3 control-label text-lg-right pt-2",@style= "font-weight: bold;"})
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new {@class = "col-lg-3 control-label text-lg-right pt-2",@style= "font-weight: bold;"})
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new {@class = "col-lg-3 control-label text-lg-right pt-2",@style= "font-weight: bold;"})
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.CampusID, "CampusID", htmlAttributes: new {@class = "col-lg-3 control-label text-lg-right pt-2",@style= "font-weight: bold;"})
+            <div class="col-md-6">
+                @Html.DropDownList("CampusID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CampusID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+
+
+       
+        <footer class="card-footer text-right">
+            <input type="submit" href="/Teacher/Index" value="ADD"  class="btn btn-primary"/>
+            <button type="reset" class="btn btn-default">@Html.ActionLink("Back", "Index")</button>
+                    </footer>
+
+                     
+
+
+                    <div>
+                           
+                    </div>
+
+
+
+   
+                </div>
+            </section>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,133 @@
+﻿@model IEnumerable<StudentMonitoringSystem.Models.SubjectTimeTable>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+@Html.DropDownList("TeacherID","SelectValue")
+<table class="table" id="tableBody">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Campu.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmAndPm.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AmAndPm1.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Day.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hour.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hour1.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Minute.Minuts)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Minute1.Minuts)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Class.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subject.SubjectName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Campu.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Section.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AmAndPm.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AmAndPm1.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Day.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hour.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hour1.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Minute.Minuts)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Minute1.Minuts)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Class.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subject.SubjectName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#TeacherID').change(function () {
+                var TeacherID = $(this).val();
+                $.getJSON("/TeacherTimeTable/GetTimeTable?ID=" + TeacherID, function (data) {
+                    var empdata = "";
+
+
+                    $.each(data, function (key, val) {
+                        // alert(val.cityID);
+
+                       
+                       
+
+                        empdata += "<tr>";
+                        empdata += "<td>" + val.ID + "</td>";
+                        empdata += "<td>" + val.SectionID + "</td>";
+
+
+                        empdata += "<td>" + val.DayID + "</td>";
+                      //  empdata += "<td>" + val.hour + "</td>";
+                       // empdata += "<td>" + val.Phone + "</td>";
+                      //  empdata += "<td>";
+                        //empdata += "<a href='/Employee/Edit/" + val.employeeID + "'>Edit</a> | ";
+                        //empdata += "<a href='/Employee/Details/"+val.employeeID+"'>Details</a> | ";
+                        //empdata += "<a href='/Employee/Delete/"+val.employeeID+"'>Details</a>";
+                     //   empdata += "</td>";
+                        empdata += "</tr>";
+                    });
+                    $('#tableBody').empty().html(empdata);
+                  //  $('#header').empty().html(header);
+
+                })
+
+            })
+        });
+    </script>
+
+}

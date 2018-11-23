@@ -1,0 +1,54 @@
+﻿@model StudentMonitoringSystem.Models.ManageFeeViewModel
+
+@{
+   
+}
+
+<h2>_StudentData</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    @Html.HiddenFor(x => x.ClassID);
+  //  @Html.HiddenFor(x => x.Title);
+   // @Html.HiddenFor(x => x.Description);
+    @Html.HiddenFor(x => x.Date);
+
+
+    <table class="table table-bordered table-sm">
+        <thead>
+        <tr>
+            <th><input type="checkbox" id="CheckedAll" /></th>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        @for (int i = 0; i < Model.StudentList.Count(); i++)
+        {
+            <tr>
+            @*//    <td>@Html.CheckBoxFor(x => x.StudentList[i].Stutus, new { @class = "selectAll pl-2 pt-2" })</td>
+                <td>@Html.TextBoxFor(x => x.StudentList[i].StudentID, new { @readonly = "readonly", @class = "form-control-plaintext" })</td>
+             //   <td>@Html.TextBoxFor(x => x.StudentList[i].Student2.Name, new { @readonly = "readonly", @class = "form-control-plaintext" })</td>*@
+            </tr>
+        }
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2"></td>
+            <td class="text-center"><input type="submit" value="Mark Attendance" class="btn btn-outline-success" /></td>
+        </tr>
+        </tfoot>
+    </table>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
